@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reflex Delivery Management</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Reflex</h1>
+        <p>Delivery management for Kenyan retailers</p>
+    </div>
+
+   <div id="connection">
+    ● Connecting...
+   </div>
+</header>
+
+<nav>
+    <button onclick="showView('retailer')">
+        Retailer
+    </button>
+
+    <button onclick="showView('dispatcher')">
+        Dispatcher
+    </button>
+
+    <button onclick="showView('rider')">
+        Rider
+    </button>
+</nav>
+
+<main>
+
+    <!-- RETAILER -->
+
+    <section id="retailer" class="view">
+
+        <h2>New Delivery Request</h2>
+
+        <form id="deliveryForm">
+
+            <label>
+                Customer name
+                <input
+                    id="customerName"
+                    required
+                >
+            </label>
+
+            <label>
+                Customer phone
+                <input
+                    id="customerPhone"
+                    required
+                >
+            </label>
+
+            <label>
+                Delivery address
+                <textarea
+                    id="address"
+                    required
+                ></textarea>
+            </label>
+
+            <label>
+                Item description
+                <textarea
+                    id="itemDescription"
+                    required
+                ></textarea>
+            </label>
+
+            <button type="submit">
+                Create Delivery
+            </button>
+
+        </form>
+
+        <div id="retailerDeliveries"></div>
+
+    </section>
+
+
+    <!-- DISPATCHER -->
+
+    <section id="dispatcher" class="view hidden">
+
+        <h2>Dispatcher Dashboard</h2>
+
+        <div class="stats">
+            <div>
+                <strong id="openCount">0</strong>
+                <span>Open</span>
+            </div>
+
+            <div>
+                <strong id="assignedCount">0</strong>
+                <span>Assigned</span>
+            </div>
+
+            <div>
+                <strong id="pickupCount">0</strong>
+                <span>Picked Up</span>
+            </div>
+
+            <div>
+                <strong id="deliveredCount">0</strong>
+                <span>Delivered</span>
+            </div>
+        </div>
+
+        <div id="dispatcherDeliveries"></div>
+
+    </section>
+
+
+    <!-- RIDER -->
+
+    <section id="rider" class="view hidden">
+
+        <h2>Rider Dashboard</h2>
+
+        <label>
+            Select Rider
+
+            <select id="riderSelector">
+            </select>
+        </label>
+
+        <div id="riderDeliveries"></div>
+
+    </section>
+
+
+    <!-- CONFIRMATION -->
+
+<!-- CONFIRMATION -->
+
+<section id="confirmation" class="view hidden">
+
+    <h2>Confirm Delivery</h2>
+
+    <p>
+        Scan the customer's QR code to confirm delivery.
+    </p>
+
+    <input
+        id="confirmationOrder"
+        type="hidden"
+    >
+
+    <div id="qr-reader"></div>
+
+    <div class="confirmation-manual">
+
+        <p>
+            Or enter the confirmation code manually:
+        </p>
+
+        <input
+            id="confirmationCode"
+            placeholder="Confirmation code"
+            autocomplete="off"
+        >
+
+        <button onclick="confirmDelivery()">
+            Confirm Delivery
+        </button>
+
+    </div>
+
+    <p id="confirmationResult"></p>
+
+    <button onclick="stopScanner(); showView('rider')">
+        Back to Rider Dashboard
+    </button>
+
+</section>
+
+</main>
+
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+
+</body>
+</html>
