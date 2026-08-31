@@ -423,6 +423,6 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT, () => {
-    console.log(`Reflex running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Reflex running on port ${PORT}`);
 });
